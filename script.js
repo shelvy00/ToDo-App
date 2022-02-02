@@ -1,47 +1,76 @@
-let inputField = document.getElementById("inputField");
-let toDoContainer = document.getElementById("toDoContainer")
+let inputElement = document.querySelector("input");
+let formElement = document.querySelector("form");
+let listElement = document.querySelector("ul");
 
-function addTo() {
- let todo = document.createElement("p");
- let btn = document.createElement("BUTTON");
- let text = document.createTextNode("Delete");
- todo.innerText = inputField.value;
- toDoContainer.appendChild(todo);
- inputField.value = "";
- btn.appendChild(text);
- todo.appendChild(btn)
+let taskList = [
+    "Get Food",
+    "Clean kitchen"
+];
 
- btn.addEventListener("onclick", function() {
- 	remove();
- })
-} 
+// save data to local storage
+function saveTaskList() {
+	let str = JSON.stringify(taskList);
+	localStorage.setItem("taskList",str);
+};
 
-
- /*li.appendChild(input_text);
- document.querySelector("ul").appendChild(li);
- document.todo-form.text.value = "";
-
- createCloseButton(li);
+// get data from local storage
+function getTaskList() {
+	let strTask = localStorage.getItem("taskList");
+	taskList = JSON.parse(str);
+	if (!taskList) {
+		taskList = [];
+	}
 }
+//getTaskList();
 
-function createCloseButton(li) {
-	let span = document.createElement("SPAN")
-	let btn = document.createElement("Button");
-	let text = document.createTextNode("delete");
 
-	btn.className = "close";
-	btn.appendChild(text);
-	li.appendChild(btn);
+function deleteItem(e) {
+	let task = e.target.parentElement.previousElementSibling.innerHTML;
+	let index = taskList.indexOf(task);
+	if (index !== -1) {
+		taskList.splice(index, 1);
+	}
 
-	btn.onClick = ()=> {
-	.removeChild()
- }	 
-}
+	makeList();
+};
 
-document.querySelectorAll("li").forEach(createCloseButton);
+function makeList() {
+	listElement.innerHTML = "",
+	taskList.forEach(function(item){
+		let newItem = document.createElement("li");
 
-document.querySelector("ul").addEventListener("click", (e) => {
-	if (e.target.tagName === "LI")
-		e.target.className.toggle("checked")
-})*/
+		//Add new span for text
+		let span = document.createElement("span");
+		span.innerHTML = item;
+		newItem.appendChild(span);
 
+		//Add delete button
+		let btn = document.createElement("button");
+		btn.classList.add("delete");
+		btn.innerHTML = "-"
+		newItem.appendChild(btn);
+
+		btn.addEventListener("click", (e)=> deleteItem(e));
+
+
+		//add Li to Ul
+		listElement.appendChild(newItem);
+	});
+
+	inputElement.value = "";
+};
+
+makeList();
+
+function addTask() {
+ if (inputElement.value) {
+ 	taskList.push(inputElement.value)
+ 	makeList()
+ 	saveTaskList()
+ }
+};
+
+formElement.addEventListener("submit", function(e) {
+	e.preventDefault();
+	addTask()
+});

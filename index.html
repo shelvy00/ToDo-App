@@ -13,19 +13,20 @@
     <title>ToDo App</title>
   </head>
   <body>
-    <form name="todo_form">
-      <div class="container">
-        <h1>ToDo List Of Things To Do</h1>
-        <input type="text" id="inputField">
-        <input type="button" value="add" onclick="addTo()">
-        <div id="toDoContainer">
-          
+    <div class="container">
+      <div class="todo-list">
+        <div class="header">
+          <h1><span>Tasks</span></h1>
         </div>
+        <div class="list">
+          <ul></ul>
+        </div>
+        <form class="add-task">
+          <input type="text">
+          <button>+</button>
+        </form>
       </div>
-    </form>
-
- 
-
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
