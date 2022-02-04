@@ -15,11 +15,17 @@ function saveTaskList() {
 
 // get data from local storage
 function getTaskList() {
+	let str = JSON.stringify(taskList);
 	let strTask = localStorage.getItem("taskList");
 	taskList = JSON.parse(str);
-	if (!taskList) {
+	/*if (!taskList) {
 		taskList = [];
-	}
+	}*/ 
+	/*if (strTask) {
+		taskList = strTask
+	}*/
+	
+
 }
 //getTaskList();
 
@@ -67,10 +73,12 @@ function addTask() {
  	taskList.push(inputElement.value)
  	makeList()
  	saveTaskList()
+ 	getTaskList()
  }
 };
 
 formElement.addEventListener("submit", function(e) {
 	e.preventDefault();
 	addTask()
+	getTaskList()
 });
