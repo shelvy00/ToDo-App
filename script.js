@@ -17,19 +17,13 @@ function saveTaskList() {
 function getTaskList() {
 	let str = JSON.stringify(taskList);
 	let strTask = localStorage.getItem("taskList");
-	taskList = JSON.parse(str);
-	/*if (!taskList) {
-		taskList = [];
-	}*/ 
-	/*if (strTask) {
-		taskList = strTask
-	}*/
-	
-
+	taskList = JSON.parse(strTask);
+	console.log(JSON.parse(strTask));
+	makeList();
 }
-//getTaskList();
+getTaskList();
 
-
+// delete data from local storage
 function deleteItem(e) {
 	let task = e.target.parentElement.previousElementSibling.innerHTML;
 	let index = taskList.indexOf(task);
@@ -56,7 +50,7 @@ function makeList() {
 		btn.innerHTML = "-"
 		newItem.appendChild(btn);
 
-		btn.addEventListener("click", (e)=> deleteItem(e));
+		//btn.addEventListener("click", (e)=> deleteItem();	
 
 
 		//add Li to Ul
