@@ -4,8 +4,8 @@ let listElement = document.querySelector("ul");
 
 let taskList = [
     "Get Food",
-    "Clean kitchen"
-];
+    "Clean Kitchen"
+ ];
 
 // save data to local storage
 function saveTaskList() {
@@ -24,19 +24,22 @@ function getTaskList() {
 getTaskList();
 
 // delete data from local storage
-function deleteItem(e) {
-	let task = e.target.parentElement.previousElementSibling.innerHTML;
-	let index = taskList.indexOf(task);
-	if (index !== -1) {
-		taskList.splice(index, 1);
-	}
+function deleteItem(id) {
+	const task = document.getElementById(id)
+	//task.remove();
+	//let task = e.target.parentElement.previousElementSibling.innerHTML;
+	//let index = taskList.indexOf(task);
+	//if (index !== -1) {
+		taskList.splice(task, 1);
+		localStorage.removeItem("taskList")
+	//}
 
 	makeList();
 };
 
 function makeList() {
 	listElement.innerHTML = "",
-	taskList.forEach(function(item){
+	taskList.forEach(function(item, index){
 		let newItem = document.createElement("li");
 
 		//Add new span for text
@@ -47,10 +50,12 @@ function makeList() {
 		//Add delete button
 		let btn = document.createElement("button");
 		btn.classList.add("delete");
-		btn.innerHTML = "-"
+		btn.innerHTML = "Delete"
+		btn.setAttribute("id" , index)
+		btn.onclick = function() {deleteItem(index)}
 		newItem.appendChild(btn);
 
-		//btn.addEventListener("click", (e)=> deleteItem();	
+		//btn.addEventListener("click", (e)=> deleteItem(e));	
 
 
 		//add Li to Ul
