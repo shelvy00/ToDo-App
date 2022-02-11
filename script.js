@@ -25,11 +25,13 @@ getTaskList();
 
 // delete data from local storage
 function deleteItem(id) {
-	const task = document.getElementById(id)
+	let strTask = localStorage.getItem("taskList");
+	taskList = JSON.parse(strTask);
+	//const task = document.getElementById(id)
 	//let task = e.target.parentElement.previousElementSibling.innerHTML;
 	//let index = taskList.indexOf(task,1);
 	//if (task !== -1) {
-	taskList.splice(task,1);
+	taskList.splice(id,1);
 	localStorage.setItem("taskList", JSON.stringify(taskList));
     //}
 
