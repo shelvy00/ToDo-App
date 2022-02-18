@@ -15,7 +15,6 @@ function saveTaskList() {
 
 // get data from local storage
 function getTaskList() {
-	let str = JSON.stringify(taskList);
 	let strTask = localStorage.getItem("taskList");
 	taskList = JSON.parse(strTask);
 	console.log(JSON.parse(strTask));
@@ -65,8 +64,6 @@ function makeList() {
 
 	inputElement.value = "";
 };
-
-makeList();
 
 function addTask() {
  if (inputElement.value) {
