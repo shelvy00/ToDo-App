@@ -3,7 +3,20 @@ let formElement = document.querySelector("form");
 let listElement = document.querySelector("ul");
 
 let taskList = []
+
 if (localStorage.getItem("taskList") === null) {
+
+	axios.get('https://jsonplaceholder.typicode.com/todos')
+	.then(function (response) {
+		const responseData = response.data;
+		for (let i = 0; i < 5; i++) {
+			taskList.push(responseData[i].title)
+			
+			console.log(responseData[i].title)
+		}
+		localStorage.setItem("taskList", JSON.stringify(taskList))
+
+	})
 	
 }
 
