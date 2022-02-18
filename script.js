@@ -2,10 +2,10 @@ let inputElement = document.querySelector("input");
 let formElement = document.querySelector("form");
 let listElement = document.querySelector("ul");
 
-let taskList = [
-    "Get Food",
-    "Clean Kitchen"
- ];
+let taskList = []
+if (localStorage.getItem("taskList") === null) {
+	
+}
 
 // save data to local storage
 function saveTaskList() {
@@ -15,7 +15,6 @@ function saveTaskList() {
 
 // get data from local storage
 function getTaskList() {
-	let str = JSON.stringify(taskList);
 	let strTask = localStorage.getItem("taskList");
 	taskList = JSON.parse(strTask);
 	console.log(JSON.parse(strTask));
@@ -65,8 +64,6 @@ function makeList() {
 
 	inputElement.value = "";
 };
-
-makeList();
 
 function addTask() {
  if (inputElement.value) {
