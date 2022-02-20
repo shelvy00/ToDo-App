@@ -2,7 +2,8 @@ let inputElement = document.querySelector("input");
 let formElement = document.querySelector("form");
 let listElement = document.querySelector("ul");
 
-let taskList = []
+let taskList = [];
+localStorage.removeItem("taskList");
 
 if (localStorage.getItem("taskList") === null) {
 
@@ -11,11 +12,11 @@ if (localStorage.getItem("taskList") === null) {
 		const responseData = response.data;
 		for (let i = 0; i < 5; i++) {
 			taskList.push(responseData[i].title)
-			
+
 			console.log(responseData[i].title)
 		}
 		localStorage.setItem("taskList", JSON.stringify(taskList))
-
+        getTaskList();
 	})
 	
 }
@@ -33,7 +34,7 @@ function getTaskList() {
 	console.log(JSON.parse(strTask));
 	makeList();
 }
-getTaskList();
+//getTaskList();
 
 // delete data from local storage
 function deleteItem(id) {
