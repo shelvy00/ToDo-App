@@ -3,7 +3,7 @@ let formElement = document.querySelector("form");
 let listElement = document.querySelector("ul");
 
 let taskList = [];
-localStorage.removeItem("taskList");
+//localStorage.removeItem("taskList");
 
 if (localStorage.getItem("taskList") === null) {
 
@@ -19,6 +19,9 @@ if (localStorage.getItem("taskList") === null) {
         getTaskList();
 	})
 	
+} 
+if (localStorage.getItem("taskList") !== null){
+       getTaskList()
 }
 
 // save data to local storage
