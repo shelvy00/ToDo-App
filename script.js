@@ -1,6 +1,6 @@
-let inputElement = document.querySelector("input");
-let formElement = document.querySelector("form");
-let listElement = document.querySelector("ul");
+const inputElement = document.querySelector("input");
+const formElement = document.querySelector("form");
+const listElement = document.querySelector("ul");
 
 let taskList = [
     "Get Food",
@@ -9,13 +9,13 @@ let taskList = [
 
 // save data to local storage
 function saveTaskList() {
-	let str = JSON.stringify(taskList);
+	const str = JSON.stringify(taskList);
 	localStorage.setItem("taskList",str);
 };
 
 // get data from local storage
 function getTaskList() {
-	let strTask = localStorage.getItem("taskList");
+	const strTask = localStorage.getItem("taskList");
 	taskList = JSON.parse(strTask);
 	console.log(JSON.parse(strTask));
 	makeList();
@@ -24,7 +24,7 @@ getTaskList();
 
 // delete data from local storage
 function deleteItem(id) {
-	let strTask = localStorage.getItem("taskList");
+	const strTask = localStorage.getItem("taskList");
 	taskList = JSON.parse(strTask);
 	//const task = document.getElementById(id)
 	//let task = e.target.parentElement.previousElementSibling.innerHTML;
@@ -40,15 +40,15 @@ function deleteItem(id) {
 function makeList() {
 	listElement.innerHTML = "",
 	taskList.forEach(function(item, index){
-		let newItem = document.createElement("li");
+		const newItem = document.createElement("li");
 
 		//Add new span for text
-		let span = document.createElement("span");
+		const span = document.createElement("span");
 		span.innerHTML = item;
 		newItem.appendChild(span);
 
 		//Add delete button
-		let btn = document.createElement("button");
+		const btn = document.createElement("button");
 		btn.classList.add("delete");
 		btn.innerHTML = "Delete"
 		btn.setAttribute("id" , index)
